@@ -1,0 +1,5 @@
+- No comments (zero)
+- Descriptive Variable name
+- Clean code
+- Follow DRY (do not repeat yourself)
+- pydantic objects for type checking

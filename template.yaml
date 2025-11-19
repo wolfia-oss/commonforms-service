@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: CommonForms Lambda Service - Direct Invocation
+
+Resources:
+  CommonFormsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: commonforms
+      PackageType: Image
+      ImageUri: !Sub '${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/core:commonforms-latest'
+      Architectures:
+        - x86_64
+      MemorySize: 6144
+      Timeout: 900
+      EphemeralStorage:
+        Size: 10240
+
+Outputs:
+  FunctionArn:
+    Description: Lambda function ARN for direct invocation
+    Value: !GetAtt CommonFormsFunction.Arn
+    Export:
+      Name: CommonFormsFunctionArn
+
+  FunctionName:
+    Description: Lambda function name
+    Value: !Ref CommonFormsFunction
